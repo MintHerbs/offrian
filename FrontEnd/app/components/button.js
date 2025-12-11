@@ -1,43 +1,58 @@
-import React from 'react';
-import { Pressable, Text, StyleSheet } from 'react-native'; 
+// app/components/button.js
 
-function Button({ onPress, style }) {
+import React from 'react';
+import { Pressable, Text, StyleSheet } from 'react-native';
+import LoaderKit from 'react-native-loader-kit';
+
+function Button({ onPress, style, title, loading = false }) {
   return (
     <Pressable
       onPress={onPress}
+      disabled={loading}
       style={({ pressed }) => [
         styles.button,
+        style,
         pressed && styles.buttonPressed,
-        style // Apply custom styles passed from parent
+        loading && styles.buttonLoading
       ]}
     >
-      <Text style={styles.text}>Create account</Text>
+      {loading ? (
+        <LoaderKit
+          style={styles.loader}
+          name={'BallDoubleBounce'}
+          size={25}
+          color="#FFFFFF"
+        />
+      ) : (
+        <Text style={styles.text}>{title || "Button"}</Text>
+      )}
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    // Styles based on the Login.js design (now centralized here):
-    backgroundColor: '#1E1E1E', 
-    borderRadius: 100, // Set to 8 to match the look of the AuthButton
-    paddingVertical: 17, 
-    paddingHorizontal: 90,
-    width: '100%', 
+    backgroundColor: '#1E1E1E',
+    borderRadius: 100,
+    paddingVertical: 19,
+    paddingHorizontal: 100,
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   buttonPressed: {
-    // Slightly lighter color on press
-    backgroundColor: '#3e414b', 
-    opacity: 0.9,
+    backgroundColor: '#3e414b',
+    opacity: 0.9
+  },
+  buttonLoading: {
+    opacity: 0.7
   },
   text: {
-    // Text styles based on the Login.js design:
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '600'
   },
+  loader: { }
 });
 
 export default Button;
