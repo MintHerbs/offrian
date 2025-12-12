@@ -6,6 +6,7 @@ import Screen from '../components/screen';
 import AuthButton from '../components/authButton';
 import { FontAwesome } from '@expo/vector-icons';
 import Button from '../components/button';
+import colors from '../config/colors';
 
 import LogoIcon from '../assets/Logo.svg';
 import AppleIcon from '../assets/Apple.svg';
@@ -21,7 +22,7 @@ const GoogleIcon = ({ width, height }) => (
 
 const WelcomeScreen = ({ navigation }) => {
   const handleSocialLogin = (provider) => console.log(`Continue with ${provider}`);
-  const handleCreateAccount = () => console.log("Navigating to Create Account");
+  const handleCreateAccount = () => navigation.navigate("Register");
 
   const handleLogin = () => {
     navigation.navigate('Login');
@@ -68,7 +69,7 @@ const WelcomeScreen = ({ navigation }) => {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Have an account already? 
+            Have an account already?
             <Text
               style={styles.loginLink}
               onPress={handleLogin}
@@ -85,7 +86,7 @@ const WelcomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: '#F9F5F8',
+    backgroundColor: colors.background,
     alignItems: 'center'
   },
   contentContainer: {
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '500'
   },
-  
+
   footer: {
     marginTop: 'auto',
     paddingTop: 20

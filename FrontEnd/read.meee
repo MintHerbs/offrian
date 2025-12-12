@@ -1,32 +1,17 @@
 // App.js
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import WelcomeScreen from './app/screens/WelcomeScreen.js';
-import LoginScreen from './app/screens/LoginScreen.js';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
-const Stack = createNativeStackNavigator();
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import LoginScreen from "./app/screens/LoginScreen";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+// import navigationTheme from "./app/navigation/navigationTheme"; // Uncomment this line if you have a theme file
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Welcome"
-        screenOptions={{
-          headerShown: false
-        }}
-      >
-        <Stack.Screen
-          name="Welcome"
-          component={WelcomeScreen}
-        />
-
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-        />
-      </Stack.Navigator>
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
