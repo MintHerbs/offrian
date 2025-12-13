@@ -14,9 +14,8 @@ import {
   KeyboardAvoidingView,
 
   Platform,
-
-  ScrollView
-
+  ScrollView,
+  Alert
 } from "react-native";
 
 
@@ -41,14 +40,12 @@ import Logo from "../assets/Logo.svg";
 import EmailIcon from "../assets/form icons/Email.svg";
 
 import PasswordIcon from "../assets/form icons/Password.svg";
+import { supabase } from "../lib/supabase";
 
 
 const validationSchema = Yup.object().shape({
-
-  email: Yup.string().required().email().label("Email"),
-
+  email: Yup.string().required().label("Email or Username"),
   password: Yup.string().required().min(4).label("Password")
-
 });
 
 
@@ -60,24 +57,52 @@ export default function LoginScreen({ navigation }) {
 
 
   const handleLogin = async (values) => {
-
-    console.log("Login attempt with:", values);
-
+    setLoading(true);
     setError("");
 
-    setLoading(true);
+    const { email, password } = values;
+    let finalEmail = email;
 
+    // Check if input is likely a username (no @ symbol)
+    if (!email.includes("@")) {
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('email')
+          .eq('username', email)
+          .single();
 
-    // Simulate API call
+        if (error || !data) {
+          // If profile lookup fails (or table doesn't exist), we can't proceed with username login
+          // But we'll let it fall through to try as email directly or show error
+          console.log("Username lookup failed:", error?.message);
+          Alert.alert("Login Error", "Invalid username or password."); // Generic security-safe message
+          setLoading(false);
+          return;
+        }
+        finalEmail = data.email;
+      } catch (err) {
+        console.error("Unexpected error during username lookup:", err);
+      }
+    }
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: finalEmail,
+        password: password,
+      });
 
-
-    setLoading(false);
-
-
-    // Example: setError("Login failed. Please check your credentials.");
-
+      if (error) {
+        Alert.alert("Login Error", error.message);
+      } else {
+        // Success! Session listener in App.js will handle navigation.
+      }
+    } catch (error) {
+      Alert.alert("Error", "An unexpected error occurred.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
 
@@ -148,7 +173,7 @@ export default function LoginScreen({ navigation }) {
 
                       icon={EmailIcon}
 
-                      placeholder="Email"
+                      placeholder="Email or Username"
 
                       autoCapitalize="none"
 

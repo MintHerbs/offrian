@@ -1,10 +1,14 @@
 // app/components/button.js
 
 import React from 'react';
-import { Pressable, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import LoaderKit from 'react-native-loader-kit';
+import Constants from 'expo-constants';
 
 function Button({ onPress, style, title, loading = false }) {
+  // Check if running in Expo Go
+  const isExpoGo = Constants.executionEnvironment === 'storeClient';
+
   return (
     <Pressable
       onPress={onPress}
@@ -17,12 +21,16 @@ function Button({ onPress, style, title, loading = false }) {
       ]}
     >
       {loading ? (
-        <LoaderKit
-          style={styles.loader}
-          name={'BallDoubleBounce'}
-          size={25}
-          color="#FFFFFF"
-        />
+        isExpoGo ? (
+          <ActivityIndicator size="small" color="#FFFFFF" />
+        ) : (
+          <LoaderKit
+            style={styles.loader}
+            name={'BallDoubleBounce'}
+            size={25}
+            color="#FFFFFF"
+          />
+        )
       ) : (
         <Text style={styles.text}>{title || "Button"}</Text>
       )}
@@ -52,7 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600'
   },
-  loader: { }
+  loader: {}
 });
 
 export default Button;
