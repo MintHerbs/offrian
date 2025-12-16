@@ -13,8 +13,8 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 const AuthButton = ({ text, IconSVG, onPress, style }) => {
   return (
-    <TouchableOpacity 
-      style={[styles.button, style]} 
+    <TouchableOpacity
+      style={[styles.button, style]}
       onPress={onPress}
       activeOpacity={0.7} // For better user feedback
     >
@@ -23,10 +23,10 @@ const AuthButton = ({ text, IconSVG, onPress, style }) => {
         {/* Render the Icon component passed as a prop */}
         {IconSVG && (
           <View style={styles.iconContainer}>
-            <IconSVG width={24} height={24} /> 
+            <IconSVG width={24} height={24} />
           </View>
         )}
-        
+
         {/* Render the button text */}
         <Text style={styles.text}>{text}</Text>
       </View>
@@ -38,23 +38,23 @@ const styles = StyleSheet.create({
   button: {
     // 1. Transparent Background
     backgroundColor: 'transparent',
-    
+
     // 2. The Border Style
     borderWidth: 1,
     // Use an RGBA value for color and 10% opacity (0.1)
-    borderColor: 'rgba(0, 0, 0, 0.1)', 
+    borderColor: 'rgba(0, 0, 0, 0.1)',
     borderRadius: 100, // Standard button border radius
     borderWidth: 1.5,
-    
+
     // Default Padding (Adjust as needed to match button.js)
     paddingVertical: 15,
     paddingHorizontal: 40,
-    
+
     // To position the icon and text correctly
-    alignItems: 'center', 
-    justifyContent: 'center', 
+    alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 10,
-    width: '110%', // Example width
+    width: '100%', // Standard width
     alignSelf: 'center', // Center the button on the screen
   },
   content: {

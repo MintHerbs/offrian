@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import Screen from '../components/screen';
+import ButtonGeneration from '../modules/HomeScreen/ButtonGeneration'; // Adjust path based on your folder structure
 
-export default function InboxScreen() {
+function InboxScreen() {
   return (
-    <View>
-      <Text>Inbox Screen</Text>
-    </View>
+    <Screen>
+      <ButtonGeneration />
+    </Screen>
   );
 }
+
+export default InboxScreen;

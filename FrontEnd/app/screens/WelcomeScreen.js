@@ -36,8 +36,8 @@ const WelcomeScreen = ({ navigation }) => {
           <View style={styles.logoContainer}>
             <LogoIcon width={100} height={100} />
           </View>
-          <Text style={styles.title}>Welcome to Offrian</Text>
-          <Text style={styles.subtitle}>Connect to the world</Text>
+          <Text style={styles.title}>Welcome to Doktor</Text>
+          <Text style={styles.subtitle}>Connect to a Doctor!</Text>
         </View>
 
         <View style={styles.spacer} />
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     width: '100%',
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     alignItems: 'center',
     paddingTop: 80,
     paddingBottom: 40
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
   bottomSection: {
     width: '100%',
     alignItems: 'center',
-    paddingHorizontal: 10
   },
   dividerContainer: {
     flexDirection: 'row',
