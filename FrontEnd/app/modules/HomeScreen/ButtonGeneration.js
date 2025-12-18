@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import RoundButton from '../../components/buttons/RoundButton'; // Adjust path if needed
+import RoundButton from '../../components/HomeScreen/RoundButton'; // Adjust path if needed
 
 // Icon Imports
 import BladderIcon from '../../assets/MedIcons/Bladder.svg'; // Adjust path if needed

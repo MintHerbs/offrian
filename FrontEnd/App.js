@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import AuthNavigator from "./app/navigation/AuthNavigator";
-import Navbar from "./app/navigation/navbar";
-import { supabase } from "./app/lib/supabase";
-import { View, ActivityIndicator } from "react-native";
-import InboxScreen from "./app/screens/InboxScreen";
+import React from "react";
+import Screen from "./app/components/screen";
+import AdText from "./app/modules/HomeScreen/AdBanner";
+import Carousel from "./app/modules/HomeScreen/Carousel";
+import AdBanner from "./app/modules/HomeScreen/AdBanner";
 
 export default function App() {
   return (
-    <InboxScreen />
+    <Screen>
+      <AdBanner />
+    </Screen>
   );
 }
