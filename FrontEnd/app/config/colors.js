@@ -1,6 +1,6 @@
 // Central palette of every colour you’re using in Ares
 export default {
-  primary:        "#fc5c65",
+  primary:        "#417FFF",
   secondary:      "#4ecdc4",
   black:          "#000",
   white:          "#fff",
@@ -10,7 +10,7 @@ export default {
   danger:         "#B3261E",
 
   // — Welcome page —
-  background:     "#F9F5F8",
+  background:     "#F9F5F8", 
   logo:           "#A52A2A",
   createButton:   "#161923",
   onBackground:   "#1C1B1F",
