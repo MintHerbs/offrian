@@ -1,29 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import SearchBar from './app/components/SearchBar';
+import Tabs from './app/components/Tab';
 import Screen from './app/components/screen';
 
-export default function App() {
+function App(props) {
   return (
     <Screen>
-<View style={styles.container}>
-      
-      {/* The SearchBar floats independently */}
-      <SearchBar />
-    </View>
+      <Tabs />
     </Screen>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  backgroundText: {
-    marginTop: 300,
-    textAlign: 'center',
-    color: '#ccc',
-    fontSize: 18
-  }
-});
+export default App;
